@@ -863,3 +863,204 @@ html,body{max-width:100%;overflow-x:hidden}
 .signup-socials a:hover{background:var(--green);color:#fff;transform:translateY(-3px);box-shadow:0 12px 24px rgba(31,77,67,.16)}
 #loginPanel .signup-socials{display:none!important}
 @media(max-width:520px){.signup-socials a{width:42px;height:42px}.signup-socials a svg{width:19px;height:19px}}
+
+/* Requested fixes: mobile menu, auth validation UI, and small-screen polish */
+.nav{position:relative}
+.nav-toggle{
+  width:44px!important;
+  height:44px!important;
+  border:1px solid rgba(255,255,255,.28)!important;
+  border-radius:12px!important;
+  background:rgba(255,255,255,.10)!important;
+  color:transparent!important;
+  font-size:0!important;
+  padding:0!important;
+  position:relative!important;
+}
+.nav-toggle::before,
+.nav-toggle::after{
+  content:"";
+  position:absolute;
+  left:11px;
+  right:11px;
+  height:2px;
+  border-radius:2px;
+  background:#fff;
+  transition:transform .25s ease, box-shadow .25s ease, top .25s ease;
+}
+.nav-toggle::before{top:14px;box-shadow:0 7px 0 #fff}
+.nav-toggle::after{top:28px}
+.nav-toggle.is-open::before{top:21px;transform:rotate(45deg);box-shadow:none}
+.nav-toggle.is-open::after{top:21px;transform:rotate(-45deg)}
+@media(max-width:980px){
+  .nav{height:auto;min-height:74px;padding:14px 16px!important;border-radius:16px}
+  .menu{max-height:calc(100vh - 120px);overflow:auto}
+}
+@media(max-width:420px){
+  .container{width:min(100% - 24px,1180px)}
+  .hero{border-bottom-left-radius:42px;border-bottom-right-radius:42px;padding-top:20px}
+  .logo{min-width:0}
+  .logo-img{width:34px!important;height:34px!important;flex:0 0 auto}
+  .logo-word,.stackly-word{font-size:22px!important;white-space:nowrap}
+  .hero-copy h1{font-size:clamp(32px,12vw,48px)}
+  .hero-copy p{font-size:16px}
+  .nav-toggle{width:42px!important;height:42px!important;flex:0 0 42px}
+}
+
+.clean-auth-card .auth-submit{
+  justify-content:center!important;
+  gap:10px;
+  text-align:center;
+}
+.clean-auth-card .auth-submit span:first-child{
+  min-width:92px;
+  text-align:center;
+}
+.auth-divider{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  margin:18px 0 14px;
+  color:var(--muted);
+  font-size:14px;
+  font-weight:700;
+}
+.auth-divider::before,
+.auth-divider::after{
+  content:"";
+  height:1px;
+  flex:1;
+  background:rgba(31,77,67,.16);
+}
+.google-btn{
+  min-height:48px;
+  border-radius:12px;
+  border:1px solid rgba(31,77,67,.16);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:12px;
+  color:var(--green);
+  font-weight:900;
+  background:#fff;
+  box-shadow:0 10px 22px rgba(31,77,67,.06);
+  transition:.25s ease;
+}
+.google-btn:hover{transform:translateY(-2px);box-shadow:0 16px 30px rgba(31,77,67,.12)}
+.google-g{
+  width:28px;
+  height:28px;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  color:#fff;
+  background:linear-gradient(135deg,#4285f4 0 25%,#34a853 25% 50%,#fbbc05 50% 75%,#ea4335 75%);
+  font-weight:900;
+}
+.auth-message{
+  color:#c62828!important;
+  background:#fff1f1;
+  border:1px solid rgba(198,40,40,.25);
+  border-radius:10px;
+  padding:10px 12px;
+  margin-top:12px;
+  min-height:0!important;
+  font-weight:800;
+  line-height:1.45;
+  display:none;
+}
+.auth-message:not(:empty){display:block}
+.auth-form select:invalid{color:var(--muted)}
+.auth-form select option{color:var(--ink)}
+.auth-form select option[value=""]{color:var(--muted)}
+.eye-toggle{
+  width:46px!important;
+  min-width:46px;
+  border-radius:999px!important;
+  font-size:12px!important;
+  font-weight:900;
+}
+@media(max-width:520px){
+  .auth-overlay{padding:12px!important;align-items:flex-start!important;overflow:auto}
+  .clean-auth-card,.premium-auth-card.clean-auth-card{width:100%!important;max-height:none!important;margin:12px 0}
+  .clean-auth-card .auth-brand{padding-right:42px!important}
+  .clean-auth-card .auth-actions{justify-content:space-between;text-align:left}
+}
+
+/* Final auth/menu visibility fixes */
+.sr-only{
+  position:absolute!important;
+  width:1px!important;
+  height:1px!important;
+  padding:0!important;
+  margin:-1px!important;
+  overflow:hidden!important;
+  clip:rect(0,0,0,0)!important;
+  white-space:nowrap!important;
+  border:0!important;
+}
+.eye-toggle{
+  color:var(--green)!important;
+  font-size:0!important;
+}
+.eye-toggle::before{
+  content:"";
+  width:19px;
+  height:12px;
+  border:2px solid currentColor;
+  border-radius:50%;
+  display:block;
+}
+.eye-toggle::after{
+  content:"";
+  position:absolute;
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  background:currentColor;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
+}
+.eye-toggle.is-visible::before{
+  transform:rotate(-10deg);
+}
+.eye-toggle.is-visible::after{
+  width:22px;
+  height:2px;
+  border-radius:2px;
+  transform:translate(-50%,-50%) rotate(-35deg);
+  background:currentColor;
+}
+@media(max-width:980px){
+  .menu a.login-link{
+    width:100%!important;
+    max-width:none!important;
+    background:var(--gold)!important;
+    color:var(--green)!important;
+    opacity:1!important;
+    font-weight:900!important;
+    box-shadow:none!important;
+  }
+  .menu a.login-link:hover,
+  .menu a.login-link:focus{
+    color:var(--green)!important;
+    background:var(--gold)!important;
+  }
+}
+@media(max-width:420px){
+  .menu{
+    left:8px!important;
+    right:8px!important;
+    top:68px!important;
+    padding:12px!important;
+    gap:7px!important;
+  }
+  .menu a{
+    min-height:38px;
+    display:flex!important;
+    align-items:center;
+    justify-content:center;
+    font-size:12px;
+  }
+}
