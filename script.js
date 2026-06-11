@@ -110,14 +110,14 @@ function buildAuthOverlay() {
               <option value="admin">Admin</option>
               <option value="donator">Donator</option>
               <option value="user">User</option>
-            </select></div></label>
-            <label class="auth-field"><span>Email Address</span><div class="field-shell"><i>@</i><input type="email" placeholder="name@example.com" required></div></label>
-            <label class="auth-field"><span>Password</span><div class="field-shell password-wrap"><i>Lock</i><input type="password" placeholder="Enter password" required><button type="button" class="eye-toggle" aria-label="Show password"><span class="sr-only">Show password</span></button></div></label>
-            <label class="terms"><input type="checkbox" required><span>I agree to the <a href="404.html">Terms & Conditions</a></span></label>
+            </select></div><small class="field-error"></small></label>
+            <label class="auth-field"><span>Email Address</span><div class="field-shell"><i>@</i><input type="email" placeholder="name@example.com" required></div><small class="field-error"></small></label>
+            <label class="auth-field"><span>Password</span><div class="field-shell password-wrap"><i>Lock</i><input type="password" placeholder="Enter password" required><button type="button" class="eye-toggle" aria-label="Show password"><span class="sr-only">Show password</span></button></div><small class="field-error"></small></label>
+            <label class="terms auth-terms"><input type="checkbox" required><span>I agree to the <a href="404.html">Terms & Conditions</a></span><small class="field-error"></small></label>
             <button class="btn full auth-submit" type="submit"><span>Login</span></button>
           </form>
           ${googleButton()}
-          <div class="auth-actions"><a href="404.html">Forgot password?</a><a href="#" id="showSignup">Create account</a></div>
+          <div class="auth-actions single-action"><a href="404.html">Forgot password?</a></div>
           <p class="center auth-home-row"><a class="btn auth-home-btn" href="index.html">Back to Home</a></p>
           <div class="auth-message" id="loginMsg" role="alert"></div>
         </div>
@@ -125,17 +125,17 @@ function buildAuthOverlay() {
           <h2>Create Account</h2>
           <p>Signup and continue to login.</p>
           <form class="auth-form premium-auth-form" id="signupForm" novalidate>
-            <label class="auth-field"><span>Full Name</span><div class="field-shell"><i>Name</i><input type="text" placeholder="Enter your name" required></div></label>
+            <label class="auth-field"><span>Full Name</span><div class="field-shell"><i>Name</i><input type="text" placeholder="Enter your name" required></div><small class="field-error"></small></label>
             <label class="auth-field"><span>Account Role</span><div class="field-shell select-shell"><i>Role</i><select required>
               <option value="" selected>Select Role</option>
               <option>Admin</option>
               <option>Donator</option>
               <option>User</option>
-            </select></div></label>
-            <label class="auth-field"><span>Email Address</span><div class="field-shell"><i>@</i><input type="email" placeholder="name@example.com" required></div></label>
-            <label class="auth-field"><span>Password</span><div class="field-shell password-wrap"><i>Lock</i><input type="password" id="signupPassword" placeholder="Create password" required><button type="button" class="eye-toggle" aria-label="Show password"><span class="sr-only">Show password</span></button></div></label>
-            <label class="auth-field"><span>Confirm Password</span><div class="field-shell password-wrap"><i>Key</i><input type="password" id="confirmPassword" placeholder="Confirm password" required><button type="button" class="eye-toggle" aria-label="Show password"><span class="sr-only">Show password</span></button></div></label>
-            <label class="terms"><input type="checkbox" required><span>I agree to the <a href="404.html">Terms & Conditions</a></span></label>
+            </select></div><small class="field-error"></small></label>
+            <label class="auth-field"><span>Email Address</span><div class="field-shell"><i>@</i><input type="email" placeholder="name@example.com" required></div><small class="field-error"></small></label>
+            <label class="auth-field"><span>Password</span><div class="field-shell password-wrap"><i>Lock</i><input type="password" id="signupPassword" placeholder="Create password" required><button type="button" class="eye-toggle" aria-label="Show password"><span class="sr-only">Show password</span></button></div><small class="field-error"></small></label>
+            <label class="auth-field"><span>Confirm Password</span><div class="field-shell password-wrap"><i>Key</i><input type="password" id="confirmPassword" placeholder="Confirm password" required><button type="button" class="eye-toggle" aria-label="Show password"><span class="sr-only">Show password</span></button></div><small class="field-error"></small></label>
+            <label class="terms auth-terms"><input type="checkbox" required><span>I agree to the <a href="404.html">Terms & Conditions</a></span><small class="field-error"></small></label>
             <button class="btn full auth-submit" type="submit"><span>Sign Up</span></button>
           </form>
           ${googleButton()}
@@ -145,7 +145,6 @@ function buildAuthOverlay() {
             <a href="404.html" aria-label="X" title="X"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.7 10.6 21 3.5h-2.2l-5.1 5.8-4-5.8H3l7.3 10.5L3.4 20.5h2.2l5.7-6.4 4.4 6.4H22l-7.3-9.9zm-2.5 1.8-.9-1.2-4.2-5.9h1.6l3.4 4.8.9 1.2 4.6 6.5H16l-3.8-5.4z"/></svg></a>
             <a href="404.html" aria-label="LinkedIn" title="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 8.8H3.8v11h2.8v-11zM5.2 4a1.7 1.7 0 1 0 0 3.4 1.7 1.7 0 0 0 0-3.4zm6.6 4.8H9.1v11h2.7v-5.8c0-1.5.7-2.5 2-2.5 1.2 0 1.7.8 1.7 2.4v5.9h2.8v-6.4c0-3-1.6-4.8-4-4.8-1.6 0-2.5.8-2.9 1.5h-.1l-.1-1.3z"/></svg></a>
           </div>
-          <div class="auth-actions"><a href="#" id="showLogin">Already have account? Login</a></div>
           <div class="auth-message" id="signupMsg" role="alert"></div>
         </div>
       </div>
@@ -174,6 +173,24 @@ function showAuthMessage(form, message, type = "error") {
   messageBox.classList.toggle("success", type === "success");
   messageBox.classList.toggle("error", type !== "success");
   messageBox.textContent = message;
+}
+
+function clearFieldErrors(form) {
+  form.querySelectorAll(".field-error").forEach((error) => {
+    error.textContent = "";
+  });
+  form.querySelectorAll(".field-shell, .auth-terms").forEach((field) => {
+    field.classList.remove("has-error");
+  });
+}
+
+function setFieldError(control, message) {
+  const field = control.closest(".auth-field, .auth-terms");
+  if (!field) return;
+  field.classList.add("has-error");
+  field.querySelector(".field-shell")?.classList.add("has-error");
+  const error = field.querySelector(".field-error");
+  if (error) error.textContent = message;
 }
 
 buildAuthOverlay();
@@ -250,24 +267,27 @@ document.addEventListener("submit", (event) => {
   if (event.target.id === "signupForm") {
     event.preventDefault();
     const form = event.target;
+    clearFieldErrors(form);
+    document.getElementById("signupMsg").textContent = "";
+    document.getElementById("signupMsg").className = "auth-message";
+    let valid = true;
+    const nameInput = form.querySelector('input[type="text"]');
+    const roleSelect = form.querySelector("select");
     const email = form.querySelector('input[type="email"]').value.trim();
+    const emailInput = form.querySelector('input[type="email"]');
     const password = document.getElementById("signupPassword").value;
     const confirmPassword = document.getElementById("confirmPassword").value;
+    const terms = form.querySelector('input[type="checkbox"]');
 
-    if (!form.checkValidity()) {
-      showAuthMessage(form, "Please fill all required fields.");
-      return;
-    }
-
-    if (!validEmail(email)) {
-      showAuthMessage(form, "Please enter a valid email address with a domain, like name@example.com.");
-      return;
-    }
-
-    if (password !== confirmPassword) {
-      showAuthMessage(form, "Password and confirm password must match.");
-      return;
-    }
+    if (!nameInput.value.trim()) { setFieldError(nameInput, "Please enter your name."); valid = false; }
+    if (!roleSelect.value) { setFieldError(roleSelect, "Please select a role."); valid = false; }
+    if (!email) { setFieldError(emailInput, "Please enter your email address."); valid = false; }
+    else if (!validEmail(email)) { setFieldError(emailInput, "Please enter a valid email address."); valid = false; }
+    if (!password) { setFieldError(document.getElementById("signupPassword"), "Please create a password."); valid = false; }
+    if (!confirmPassword) { setFieldError(document.getElementById("confirmPassword"), "Please confirm your password."); valid = false; }
+    else if (password !== confirmPassword) { setFieldError(document.getElementById("confirmPassword"), "Password and confirm password must match."); valid = false; }
+    if (!terms.checked) { setFieldError(terms, "Please accept the terms and conditions."); valid = false; }
+    if (!valid) return;
 
     showAuthMessage(form, "Signup successful. Redirecting to login...", "success");
     setTimeout(() => openAuth("login"), 900);
@@ -276,18 +296,22 @@ document.addEventListener("submit", (event) => {
   if (event.target.id === "loginForm") {
     event.preventDefault();
     const form = event.target;
+    clearFieldErrors(form);
+    document.getElementById("loginMsg").textContent = "";
+    document.getElementById("loginMsg").className = "auth-message";
+    let valid = true;
     const role = document.getElementById("loginRole").value;
     const email = form.querySelector('input[type="email"]').value.trim();
+    const emailInput = form.querySelector('input[type="email"]');
+    const passwordInput = form.querySelector(".password-wrap input");
+    const terms = form.querySelector('input[type="checkbox"]');
 
-    if (!form.checkValidity()) {
-      showAuthMessage(form, "Please fill all required fields.");
-      return;
-    }
-
-    if (!validEmail(email)) {
-      showAuthMessage(form, "Please enter a valid email address with a domain, like name@example.com.");
-      return;
-    }
+    if (!role) { setFieldError(document.getElementById("loginRole"), "Please select a role."); valid = false; }
+    if (!email) { setFieldError(emailInput, "Please enter your email address."); valid = false; }
+    else if (!validEmail(email)) { setFieldError(emailInput, "Please enter a valid email address."); valid = false; }
+    if (!passwordInput.value) { setFieldError(passwordInput, "Please enter your password."); valid = false; }
+    if (!terms.checked) { setFieldError(terms, "Please accept the terms and conditions."); valid = false; }
+    if (!valid) return;
 
     localStorage.setItem("stacklyRole", role);
     localStorage.setItem("stacklyEmail", email);

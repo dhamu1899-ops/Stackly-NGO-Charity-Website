@@ -79,30 +79,98 @@ const panelData = {
   }
 };
 
+const panelAssets = {
+  programs: "assets/children.webp",
+  hours: "assets/volunteer.webp",
+  events: "assets/group.webp",
+  stories: "assets/child.webp",
+  certificates: "assets/team.webp",
+  support: "assets/contact.webp"
+};
+
+function animateCounters(scope = document) {
+  scope.querySelectorAll("[data-count]").forEach((node) => {
+    const target = Number(node.dataset.count || "0");
+    const prefix = node.dataset.prefix || "";
+    const suffix = node.dataset.suffix || "";
+    const duration = 900;
+    const started = performance.now();
+
+    function tick(now) {
+      const progress = Math.min((now - started) / duration, 1);
+      const value = Math.round(target * (1 - Math.pow(1 - progress, 3)));
+      node.textContent = `${prefix}${value}${suffix}`;
+      if (progress < 1) requestAnimationFrame(tick);
+    }
+
+    requestAnimationFrame(tick);
+  });
+}
+
+function prepareTopCounters() {
+  document.querySelectorAll(".dash-grid .dash-box strong").forEach((node) => {
+    const raw = node.textContent.trim();
+    const match = raw.match(/^([^0-9]*)([0-9]+)(.*)$/);
+    if (!match) return;
+    node.dataset.prefix = match[1];
+    node.dataset.count = match[2];
+    node.dataset.suffix = match[3];
+    node.textContent = `${match[1]}0${match[3]}`;
+  });
+}
+
 function renderPanel(key) {
   const data = panelData[key] || panelData.programs;
   const root = document.getElementById("dashDynamic");
   if (!root) return;
+  document.body.dataset.dashPanel = key;
 
   const total = data.cards.length;
   const active = Math.max(3, Math.min(total, Math.round(total * 0.65)));
+  const image = panelAssets[key] || panelAssets.programs;
+  const percent = Math.min(96, 64 + total * 5);
   root.innerHTML = `
+    <div class="dash-portal-banner">
+      <div>
+        <p class="eyebrow">Role Workspace</p>
+        <h2>${data.title} Command Center</h2>
+        <p>${data.text} Use this workspace to review progress, assign next actions, and monitor community support in real time.</p>
+      </div>
+      <div class="portal-badges">
+        <span>Live</span><span>Verified</span><span>Updated</span>
+      </div>
+    </div>
     <div class="dash-feature-panel">
       <div class="dash-feature-copy">
         <p class="eyebrow">Charity Activity</p>
         <h2>${data.title}</h2>
         <p>${data.text}</p>
         <div class="dash-mini-stats">
-          <span><b>${total}</b> Focus Areas</span>
-          <span><b>${active}</b> Active Now</span>
+          <span><b data-count="${total}">0</b> Focus Areas</span>
+          <span><b data-count="${active}">0</b> Active Now</span>
           <span><b>24/7</b> Support</span>
         </div>
       </div>
-      <div class="dash-impact-card">
-        <small>Current Impact</small>
-        <strong>${data.title}</strong>
-        <div class="impact-ring"><span>${Math.min(98, 70 + total * 3)}%</span></div>
+      <div class="dash-visual-card">
+        <img src="${image}" alt="${data.title}">
+        <div class="dash-visual-overlay"><small>Current Impact</small><strong>${data.title}</strong></div>
       </div>
+    </div>
+    <div class="dash-analytics-row">
+      <article class="dash-chart-card">
+        <div class="donut-chart" style="--p:${percent}"><span><b data-count="${percent}">0</b>%</span></div>
+        <div><h3>Impact Score</h3><p>Live progress based on active focus areas, support tasks, and community updates.</p></div>
+      </article>
+      <article class="dash-chart-card">
+        <h3>Monthly Activity</h3>
+        <div class="bar-set">
+          <i style="--h:62%"></i><i style="--h:78%"></i><i style="--h:54%"></i><i style="--h:88%"></i><i style="--h:70%"></i>
+        </div>
+      </article>
+      <article class="dash-chart-card">
+        <h3>Quick Status</h3>
+        <ul class="dash-status-list"><li><span></span> New requests reviewed</li><li><span></span> Field team updated</li><li><span></span> Reports ready</li></ul>
+      </article>
     </div>
     <div class="dash-content-grid attractive-grid">
       ${data.cards.map((card, index) => `
@@ -110,13 +178,15 @@ function renderPanel(key) {
           <div class="card-count">${String(index + 1).padStart(2, "0")}</div>
           <h3>${card[0]}</h3>
           <p>${card[1]}</p>
+          <div class="mini-progress"><i style="--w:${55 + index * 7}%"></i></div>
           <a href="404.html" class="dash-card-link">View details</a>
         </article>`).join("")}
     </div>
     <div class="dash-bottom-row">
       <article class="dash-timeline"><h3>Recent Updates</h3><ul><li>Coordinator reviewed latest ${data.title.toLowerCase()} activity.</li><li>Community support data updated for Salem field team.</li><li>Next follow-up action added to dashboard queue.</li></ul></article>
-      <article class="dash-action-box"><h3>Quick Action</h3><p>Use this panel to monitor work progress, check updates, and coordinate NGO support activities.</p><a href="404.html" class="btn">Open Report</a></article>
+      <article class="dash-action-box"><h3>Quick Action</h3><p>Use this panel to monitor work progress, check updates, and coordinate NGO support activities.</p><div class="dash-action-grid"><a href="404.html" class="btn">Open Report</a><a href="404.html" class="btn gold">Create Task</a></div></article>
     </div>`;
+  animateCounters(root);
 }
 
 document.querySelectorAll(".dash-menu a[data-panel]").forEach((link) => {
@@ -160,3 +230,7 @@ document.addEventListener("click", (event) => {
     localStorage.setItem("stacklyPreviousPage", window.location.pathname.split("/").pop() || "index.html");
   }
 });
+
+prepareTopCounters();
+animateCounters();
+renderPanel("programs");
